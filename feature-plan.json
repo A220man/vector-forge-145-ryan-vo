@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "current_feature": "core-api-skeleton",
+  "features": [
+    {
+      "id": "core-api-skeleton",
+      "title": "Core API Skeleton with Health Check",
+      "status": "in_progress",
+      "acceptance": [
+        "FastAPI application starts and responds to GET /healthz",
+        "Basic project structure with pyproject.toml, README.md, CHANGELOG.md",
+        "Unit test for health endpoint passes"
+      ],
+      "implementation": [
+        "src/vector_forge/main.py",
+        "src/vector_forge/__init__.py",
+        "pyproject.toml",
+        "README.md",
+        "CHANGELOG.md",
+        "tests/test_health.py"
+      ],
+      "tests": [
+        "tests/test_health.py"
+      ]
+    },
+    {
+      "id": "memory-retain-endpoint",
+      "title": "Memory Retain Endpoint",
+      "status": "planned",
+      "acceptance": [
+        "POST /v1/banks/{bank_id}/retain accepts JSON payload",
+        "Returns operation ID and status",
+        "Persists memory items with timestamps"
+      ],
+      "implementation": [
+        "src/vector_forge/api/retain.py",
+        "src/vector_forge/models/memory.py",
+        "src/vector_forge/storage/memory.py"
+      ],
+      "tests": [
+        "tests/test_retain.py"
+      ]
+    },
+    {
+      "id": "memory-recall-endpoint",
+      "title": "Memory Recall Endpoint",
+      "status": "planned",
+      "acceptance": [
+        "POST /v1/banks/{bank_id}/recall accepts query and returns memories",
+        "Supports budget parameter (low/medium/high)",
+        "Returns ranked results with scores"
+      ],
+      "implementation": [
+        "src/vector_forge/api/recall.py",
+        "src/vector_forge/services/recall.py"
+      ],
+      "tests": [
+        "tests/test_recall.py"
+      ]
+    },
+    {
+      "id": "hermes-integration-timestamp",
+      "title": "Hermes Integration: Timestamp Prefix in Recall Injection",
+      "status": "planned",
+      "acceptance": [
+        "Configuration option recall_timestamp_prefix (default off)",
+        "Auto-recall block prefixes memories with [YYYY-MM-DD]",
+        "hindsight_recall tool prefixes memories with [YYYY-MM-DD]",
+        "Uses mentioned_at first, falls back to occurred_start"
+      ],
+      "implementation": [
+        "src/vector_forge/integrations/hermes/__init__.py",
+        "src/vector_forge/integrations/hermes/config.py"
+      ],
+      "tests": [
+        "tests/test_hermes_timestamp.py"
+      ]
+    }
+  ]
+}
