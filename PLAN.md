@@ -10,7 +10,7 @@ core-api-skeleton
 
 ### core-api-skeleton — Core API Skeleton with Health Check
 
-Status: in_progress
+Status: done
 
 Acceptance:
 - FastAPI application starts and responds to GET /healthz
@@ -23,7 +23,7 @@ Tests: `tests/test_health.py`
 
 ### memory-retain-endpoint — Memory Retain Endpoint
 
-Status: planned
+Status: done
 
 Acceptance:
 - POST /v1/banks/{bank_id}/retain accepts JSON payload
@@ -36,14 +36,14 @@ Tests: `tests/test_retain.py`
 
 ### memory-recall-endpoint — Memory Recall Endpoint
 
-Status: planned
+Status: done
 
 Acceptance:
 - POST /v1/banks/{bank_id}/recall accepts query and returns memories
 - Supports budget parameter (low/medium/high)
 - Returns ranked results with scores
 
-Implementation: `src/vector_forge/api/recall.py`, `src/vector_forge/services/recall.py`
+Implementation: `src/vector_forge/api/recall.py`, `src/vector_forge/models/memory.py`, `src/vector_forge/storage/memory.py`
 
 Tests: `tests/test_recall.py`
 
