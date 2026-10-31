@@ -5,7 +5,7 @@
     {
       "id": "core-api-skeleton",
       "title": "Core API Skeleton with Health Check",
-      "status": "in_progress",
+      "status": "done",
       "acceptance": [
         "FastAPI application starts and responds to GET /healthz",
         "Basic project structure with pyproject.toml, README.md, CHANGELOG.md",
@@ -26,7 +26,7 @@
     {
       "id": "memory-retain-endpoint",
       "title": "Memory Retain Endpoint",
-      "status": "planned",
+      "status": "done",
       "acceptance": [
         "POST /v1/banks/{bank_id}/retain accepts JSON payload",
         "Returns operation ID and status",
@@ -44,7 +44,7 @@
     {
       "id": "memory-recall-endpoint",
       "title": "Memory Recall Endpoint",
-      "status": "planned",
+      "status": "done",
       "acceptance": [
         "POST /v1/banks/{bank_id}/recall accepts query and returns memories",
         "Supports budget parameter (low/medium/high)",
@@ -52,7 +52,8 @@
       ],
       "implementation": [
         "src/vector_forge/api/recall.py",
-        "src/vector_forge/services/recall.py"
+        "src/vector_forge/models/memory.py",
+        "src/vector_forge/storage/memory.py"
       ],
       "tests": [
         "tests/test_recall.py"
