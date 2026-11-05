@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "current_feature": "core-api-skeleton",
+  "current_feature": "hermes-integration-timestamp",
   "features": [
     {
       "id": "core-api-skeleton",
@@ -62,7 +62,7 @@
     {
       "id": "hermes-integration-timestamp",
       "title": "Hermes Integration: Timestamp Prefix in Recall Injection",
-      "status": "planned",
+      "status": "done",
       "acceptance": [
         "Configuration option recall_timestamp_prefix (default off)",
         "Auto-recall block prefixes memories with [YYYY-MM-DD]",

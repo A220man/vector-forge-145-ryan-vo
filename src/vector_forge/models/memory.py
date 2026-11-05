@@ -1,3 +1,4 @@
+
 """Memory models for Hindsight API."""
 
 from datetime import datetime
@@ -16,7 +17,7 @@ class MemoryItem(BaseModel):
     occurred_start: Optional[datetime] = None
     occurred_end: Optional[datetime] = None
     tags: List[str] = Field(default_factory=list)
-    bank_id: str
+    bank_id: Optional[str] = None
 
 
 class RetainRequest(BaseModel):

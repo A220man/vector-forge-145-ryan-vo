@@ -4,7 +4,7 @@ Each round completes one feature or repair. Future items are planned, not implem
 
 ## Current round
 
-core-api-skeleton
+hermes-integration-timestamp
 
 ## Roadmap
 
@@ -49,7 +49,7 @@ Tests: `tests/test_recall.py`
 
 ### hermes-integration-timestamp — Hermes Integration: Timestamp Prefix in Recall Injection
 
-Status: planned
+Status: done
 
 Acceptance:
 - Configuration option recall_timestamp_prefix (default off)
