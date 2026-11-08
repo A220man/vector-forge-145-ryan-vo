@@ -1,7 +1,9 @@
 """Tests for retain endpoint."""
-import pytest
-from httpx import AsyncClient, ASGITransport
 from uuid import UUID
+
+import pytest
+from httpx import ASGITransport, AsyncClient
+
 from vector_forge.main import app
 
 

@@ -1,15 +1,15 @@
 
 """Tests for Hermes integration timestamp prefix feature."""
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from unittest.mock import patch
 
-from vector_forge.models.memory import MemoryItem
 from vector_forge.integrations.hermes import (
     format_auto_recall_memory,
     format_tool_memory,
 )
 from vector_forge.integrations.hermes.config import hermes_config
+from vector_forge.models.memory import MemoryItem
 
 
 def test_format_auto_recall_memory_no_prefix_by_default():
@@ -17,7 +17,7 @@ def test_format_auto_recall_memory_no_prefix_by_default():
     item = MemoryItem(
         text="User prefers dark mode",
         bank_id="test-bank",
-        mentioned_at=datetime(2026, 9, 22, 10, 30, tzinfo=timezone.utc),
+        mentioned_at=datetime(2026, 9, 22, 10, 30, tzinfo=UTC),
     )
     result = format_auto_recall_memory(item)
     assert result == "- User prefers dark mode"
@@ -29,7 +29,7 @@ def test_format_auto_recall_memory_with_mentioned_at():
         item = MemoryItem(
             text="User prefers dark mode",
             bank_id="test-bank",
-            mentioned_at=datetime(2026, 9, 22, 10, 30, tzinfo=timezone.utc),
+            mentioned_at=datetime(2026, 9, 22, 10, 30, tzinfo=UTC),
         )
         result = format_auto_recall_memory(item)
         assert result == "- [2026-09-22] User prefers dark mode"
@@ -42,7 +42,7 @@ def test_format_auto_recall_memory_fallback_to_occurred_start():
             text="User works in UTC-5",
             bank_id="test-bank",
             mentioned_at=None,
-            occurred_start=datetime(2026, 8, 15, 14, 0, tzinfo=timezone.utc),
+            occurred_start=datetime(2026, 8, 15, 14, 0, tzinfo=UTC),
         )
         result = format_auto_recall_memory(item)
         assert result == "- [2026-08-15] User works in UTC-5"
@@ -66,7 +66,7 @@ def test_format_tool_memory_no_prefix_by_default():
     item = MemoryItem(
         text="User prefers dark mode",
         bank_id="test-bank",
-        mentioned_at=datetime(2026, 9, 22, 10, 30, tzinfo=timezone.utc),
+        mentioned_at=datetime(2026, 9, 22, 10, 30, tzinfo=UTC),
     )
     result = format_tool_memory(item, 1)
     assert result == "1. User prefers dark mode"
@@ -78,7 +78,7 @@ def test_format_tool_memory_with_mentioned_at():
         item = MemoryItem(
             text="User prefers dark mode",
             bank_id="test-bank",
-            mentioned_at=datetime(2026, 9, 22, 10, 30, tzinfo=timezone.utc),
+            mentioned_at=datetime(2026, 9, 22, 10, 30, tzinfo=UTC),
         )
         result = format_tool_memory(item, 1)
         assert result == "1. [2026-09-22] User prefers dark mode"
@@ -91,7 +91,7 @@ def test_format_tool_memory_fallback_to_occurred_start():
             text="User works in UTC-5",
             bank_id="test-bank",
             mentioned_at=None,
-            occurred_start=datetime(2026, 8, 15, 14, 0, tzinfo=timezone.utc),
+            occurred_start=datetime(2026, 8, 15, 14, 0, tzinfo=UTC),
         )
         result = format_tool_memory(item, 2)
         assert result == "2. [2026-08-15] User works in UTC-5"

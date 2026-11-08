@@ -1,28 +1,26 @@
 # Changelog
 
-## 1.2.0 — work-in-progress checkpoint
+## 1.3.0 — work-in-progress checkpoint
 
 Partial code published for continued development. Known issues: STATUS.md.
 
 # Changelog
 
-## 1.1.0 — work-in-progress checkpoint
-
-Partial code published for continued development. Known issues: STATUS.md.
-
-## 1.0.0 — work-in-progress checkpoint
-
-Partial code published for continued development. Known issues: STATUS.md.
-
-All notable changes to this project will be documented in this file.
-
-## [0.1.0] - 2026-10-26
+## [1.2.0] - 2026-11-08
 
 ### Added
-- Initial project structure
-- FastAPI application skeleton
-- Health check endpoint
-- Basic test setup
+- Hermes integration timestamp prefix feature (HERMES_RECALL_TIMESTAMP_PREFIX)
+- Configurable timestamp prefix for auto-recall block and hindsight_recall tool
+- Uses mentioned_at first, falls back to occurred_start
+- Test coverage for timestamp formatting (tests/test_hermes_timestamp.py)
+
+## [0.3.0] - 2026-11-05
+
+### Added
+- Hermes integration timestamp prefix feature (HERMES_RECALL_TIMESTAMP_PREFIX)
+- Configurable timestamp prefix for auto-recall block and hindsight_recall tool
+- Uses mentioned_at first, falls back to occurred_start
+- Test coverage for timestamp formatting (tests/test_hermes_timestamp.py)
 
 ## [0.2.0] - 2026-10-31
 
@@ -34,10 +32,11 @@ All notable changes to this project will be documented in this file.
 - API router modules (retain.py, recall.py)
 - Package init files for models, api, storage
 
-## [0.3.0] - 2026-11-05
+## [0.1.0] - 2026-10-26
 
 ### Added
-- Hermes integration timestamp prefix feature (HERMES_RECALL_TIMESTAMP_PREFIX)
-- Configurable timestamp prefix for auto-recall block and hindsight_recall tool
-- Uses mentioned_at first, falls back to occurred_start
-- Test coverage for timestamp formatting (tests/test_hermes_timestamp.py)
+- Initial project structure
+- FastAPI application skeleton
+- Health check endpoint
+- Basic test setup
+

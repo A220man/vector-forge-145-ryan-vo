@@ -1,7 +1,6 @@
 """In-memory storage for memory items."""
 
 import asyncio
-from typing import Dict, List
 from uuid import UUID, uuid4
 
 from vector_forge.models.memory import (
@@ -18,7 +17,7 @@ class MemoryStorage:
     """Thread-safe in-memory storage for memory items."""
 
     def __init__(self):
-        self._banks: Dict[str, Dict[UUID, MemoryItem]] = {}
+        self._banks: dict[str, dict[UUID, MemoryItem]] = {}
         self._lock = asyncio.Lock()
 
     async def retain(self, request: RetainRequest) -> RetainResponse:
@@ -56,7 +55,7 @@ class MemoryStorage:
                 query=request.query,
             )
 
-    async def get_bank_stats(self, bank_id: str) -> Dict:
+    async def get_bank_stats(self, bank_id: str) -> dict:
         """Get statistics for a bank."""
         async with self._lock:
             count = len(self._banks.get(bank_id, {}))

@@ -1,7 +1,7 @@
 """Retain API endpoint."""
 
+
 from fastapi import APIRouter, HTTPException
-from uuid import UUID
 
 from vector_forge.models.memory import RetainRequest, RetainResponse
 from vector_forge.storage.memory import memory_storage
