@@ -2,9 +2,10 @@
 """Memory models for Hindsight API."""
 
 from datetime import datetime
-from typing import Optional, List, Dict, Any
-from pydantic import BaseModel, Field
+from typing import Any
 from uuid import UUID, uuid4
+
+from pydantic import BaseModel, Field
 
 
 class MemoryItem(BaseModel):
@@ -12,18 +13,18 @@ class MemoryItem(BaseModel):
 
     id: UUID = Field(default_factory=uuid4)
     text: str
-    metadata: Dict[str, Any] = Field(default_factory=dict)
-    mentioned_at: Optional[datetime] = None
-    occurred_start: Optional[datetime] = None
-    occurred_end: Optional[datetime] = None
-    tags: List[str] = Field(default_factory=list)
-    bank_id: Optional[str] = None
+    metadata: dict[str, Any] = Field(default_factory=dict)
+    mentioned_at: datetime | None = None
+    occurred_start: datetime | None = None
+    occurred_end: datetime | None = None
+    tags: list[str] = Field(default_factory=list)
+    bank_id: str | None = None
 
 
 class RetainRequest(BaseModel):
     """Request to retain memories."""
 
-    items: List[MemoryItem]
+    items: list[MemoryItem]
     bank_id: str
     update_mode: str = "append"
 
@@ -55,5 +56,5 @@ class RecallResult(BaseModel):
 class RecallResponse(BaseModel):
     """Response from recall operation."""
 
-    results: List[RecallResult]
+    results: list[RecallResult]
     query: str

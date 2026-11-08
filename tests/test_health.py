@@ -1,6 +1,8 @@
 import pytest
-from httpx import AsyncClient, ASGITransport
+from httpx import ASGITransport, AsyncClient
+
 from vector_forge.main import app
+
 
 @pytest.mark.asyncio
 async def test_health_check():

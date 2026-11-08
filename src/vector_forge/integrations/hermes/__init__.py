@@ -2,10 +2,9 @@
 """Hermes integration for Hindsight memory recall."""
 
 from datetime import datetime
-from typing import Optional
 
-from vector_forge.models.memory import MemoryItem
 from vector_forge.integrations.hermes.config import hermes_config
+from vector_forge.models.memory import MemoryItem
 
 
 def _get_timestamp_prefix(item: MemoryItem) -> str:
@@ -18,7 +17,7 @@ def _get_timestamp_prefix(item: MemoryItem) -> str:
     if not hermes_config.recall_timestamp_prefix:
         return ""
 
-    ts: Optional[datetime] = item.mentioned_at or item.occurred_start
+    ts: datetime | None = item.mentioned_at or item.occurred_start
     if ts is None:
         return ""
     return f"[{ts.strftime('%Y-%m-%d')}] "

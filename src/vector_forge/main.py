@@ -2,8 +2,8 @@
 
 from fastapi import FastAPI
 
-from vector_forge.api.retain import router as retain_router
 from vector_forge.api.recall import router as recall_router
+from vector_forge.api.retain import router as retain_router
 
 app = FastAPI(
     title="Vector Forge Hindsight",
