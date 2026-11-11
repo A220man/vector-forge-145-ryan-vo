@@ -1,3 +1,4 @@
+
 {
   "schema_version": 1,
   "current_feature": "hermes-integration-timestamp",
@@ -75,6 +76,24 @@
       ],
       "tests": [
         "tests/test_hermes_timestamp.py"
+      ]
+    },
+    {
+      "id": "cohere-reranker-fix",
+      "title": "Cohere-Compatible Reranker Response Parsing Fix",
+      "status": "planned",
+      "acceptance": [
+        "Tolerates score alias for relevance_score in rerank responses",
+        "Parses {scores: [...], indices: [...]} array shape",
+        "Skips out-of-range indices instead of crashing",
+        "Test coverage for all three response shapes"
+      ],
+      "implementation": [
+        "src/vector_forge/engine/cross_encoder.py",
+        "tests/test_reranker.py"
+      ],
+      "tests": [
+        "tests/test_reranker.py"
       ]
     }
   ]

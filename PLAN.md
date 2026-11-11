@@ -61,3 +61,17 @@ Implementation: `src/vector_forge/integrations/hermes/__init__.py`, `src/vector_
 
 Tests: `tests/test_hermes_timestamp.py`
 
+### cohere-reranker-fix — Cohere-Compatible Reranker Response Parsing Fix
+
+Status: planned
+
+Acceptance:
+- Tolerates score alias for relevance_score in rerank responses
+- Parses {scores: [...], indices: [...]} array shape
+- Skips out-of-range indices instead of crashing
+- Test coverage for all three response shapes
+
+Implementation: `src/vector_forge/engine/cross_encoder.py`, `tests/test_reranker.py`
+
+Tests: `tests/test_reranker.py`
+
