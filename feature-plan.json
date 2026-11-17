@@ -1,4 +1,3 @@
-
 {
   "schema_version": 1,
   "current_feature": "hermes-integration-timestamp",
@@ -81,7 +80,7 @@
     {
       "id": "cohere-reranker-fix",
       "title": "Cohere-Compatible Reranker Response Parsing Fix",
-      "status": "planned",
+      "status": "done",
       "acceptance": [
         "Tolerates score alias for relevance_score in rerank responses",
         "Parses {scores: [...], indices: [...]} array shape",
