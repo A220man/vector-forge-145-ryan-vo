@@ -63,7 +63,7 @@ Tests: `tests/test_hermes_timestamp.py`
 
 ### cohere-reranker-fix — Cohere-Compatible Reranker Response Parsing Fix
 
-Status: planned
+Status: done
 
 Acceptance:
 - Tolerates score alias for relevance_score in rerank responses
