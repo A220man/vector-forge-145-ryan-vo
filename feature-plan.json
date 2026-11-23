@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "current_feature": "hermes-integration-timestamp",
+  "current_feature": "recall-query-budget-hardening",
   "features": [
     {
       "id": "core-api-skeleton",
@@ -93,6 +93,24 @@
       ],
       "tests": [
         "tests/test_reranker.py"
+      ]
+    },
+    {
+      "id": "recall-query-budget-hardening",
+      "title": "Recall Query/Budget Hardening",
+      "status": "done",
+      "acceptance": [
+        "Empty or whitespace-only query returns zero results instead of score-0 false positives",
+        "Recall budget outside low/medium/high is rejected with HTTP 400",
+        "Valid budgets low/medium/high remain accepted"
+      ],
+      "implementation": [
+        "src/vector_forge/storage/memory.py",
+        "src/vector_forge/api/recall.py",
+        "src/vector_forge/models/memory.py"
+      ],
+      "tests": [
+        "tests/test_recall.py"
       ]
     }
   ]

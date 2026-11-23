@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.6.0 — work-in-progress checkpoint
+
+Partial code published for continued development. Known issues: STATUS.md.
+
+## 1.6.0 — work-in-progress checkpoint
+
+### Fixed
+- Recall with an empty or whitespace-only query now returns zero results instead of every stored memory at score 0.0 (false-positive matches).
+- Recall rejects a `budget` outside low/medium/high with HTTP 400 instead of silently accepting it.
+
+### Changed
+- `VALID_BUDGETS` constant added to `vector_forge.models.memory`; budget validation enforced in the recall endpoint.
+- Removed unused `typing.Optional` import in `engine/cross_encoder.py` so `ruff check .` is clean.
+
+
 ## 1.5.0 — work-in-progress checkpoint
 
 Partial code published for continued development. Known issues: STATUS.md.
