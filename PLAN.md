@@ -4,7 +4,7 @@ Each round completes one feature or repair. Future items are planned, not implem
 
 ## Current round
 
-hermes-integration-timestamp
+recall-query-budget-hardening
 
 ## Roadmap
 
@@ -74,4 +74,17 @@ Acceptance:
 Implementation: `src/vector_forge/engine/cross_encoder.py`, `tests/test_reranker.py`
 
 Tests: `tests/test_reranker.py`
+
+### recall-query-budget-hardening — Recall Query/Budget Hardening
+
+Status: done
+
+Acceptance:
+- Empty or whitespace-only query returns zero results instead of score-0 false positives
+- Recall budget outside low/medium/high is rejected with HTTP 400
+- Valid budgets low/medium/high remain accepted
+
+Implementation: `src/vector_forge/storage/memory.py`, `src/vector_forge/api/recall.py`, `src/vector_forge/models/memory.py`
+
+Tests: `tests/test_recall.py`
 

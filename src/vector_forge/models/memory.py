@@ -7,6 +7,9 @@ from uuid import UUID, uuid4
 
 from pydantic import BaseModel, Field
 
+# Budget levels accepted by the recall endpoint.
+VALID_BUDGETS = frozenset({"low", "medium", "high"})
+
 
 class MemoryItem(BaseModel):
     """A single memory item."""
@@ -44,6 +47,7 @@ class RecallRequest(BaseModel):
     budget: str = "medium"
     bank_id: str
     limit: int = 10
+
 
 
 class RecallResult(BaseModel):

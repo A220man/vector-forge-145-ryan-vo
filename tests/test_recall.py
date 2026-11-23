@@ -74,3 +74,60 @@ async def test_recall_bank_id_mismatch():
         )
         assert response.status_code == 400
         assert "bank_id in path must match" in response.json()["detail"]
+
+
+@pytest.mark.asyncio
+async def test_recall_empty_query_returns_no_results():
+    """An empty/whitespace query matches nothing (no score-0 false positives)."""
+    transport = ASGITransport(app=app)
+    async with AsyncClient(transport=transport, base_url="http://test") as client:
+        await client.post(
+            "/v1/banks/empty-query-bank/retain",
+            json={
+                "bank_id": "empty-query-bank",
+                "items": [{"text": "User prefers dark mode"}],
+            },
+        )
+        for query in ("", "   ", "\t\n"):
+            response = await client.post(
+                "/v1/banks/empty-query-bank/recall",
+                json={"bank_id": "empty-query-bank", "query": query, "limit": 10},
+            )
+            assert response.status_code == 200
+            data = response.json()
+            assert data["results"] == [], f"query {query!r} should match nothing"
+            assert data["query"] == query
+
+
+@pytest.mark.asyncio
+async def test_recall_invalid_budget_returns_400():
+    """A budget outside low/medium/high is rejected with 400."""
+    transport = ASGITransport(app=app)
+    async with AsyncClient(transport=transport, base_url="http://test") as client:
+        await client.post(
+            "/v1/banks/budget-bank/retain",
+            json={"bank_id": "budget-bank", "items": [{"text": "anything"}]},
+        )
+        response = await client.post(
+            "/v1/banks/budget-bank/recall",
+            json={"bank_id": "budget-bank", "query": "anything", "budget": "ultra"},
+        )
+        assert response.status_code == 400
+        assert "budget must be one of" in response.json()["detail"]
+
+
+@pytest.mark.asyncio
+async def test_recall_valid_budgets_accepted():
+    """low, medium and high budgets are all accepted."""
+    transport = ASGITransport(app=app)
+    async with AsyncClient(transport=transport, base_url="http://test") as client:
+        await client.post(
+            "/v1/banks/budget-ok-bank/retain",
+            json={"bank_id": "budget-ok-bank", "items": [{"text": "budget check"}]},
+        )
+        for budget in ("low", "medium", "high"):
+            response = await client.post(
+                "/v1/banks/budget-ok-bank/recall",
+                json={"bank_id": "budget-ok-bank", "query": "budget check", "budget": budget},
+            )
+            assert response.status_code == 200, f"budget {budget} should be accepted"

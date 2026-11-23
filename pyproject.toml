@@ -1,6 +1,6 @@
 [project]
 name = "vector-forge-145-ryan-vo"
-version = "1.5.0"
+version = "1.6.0"
 description = "Hindsight: Agent Memory That Learns"
 readme = "README.md"
 license = {text = "MIT"}

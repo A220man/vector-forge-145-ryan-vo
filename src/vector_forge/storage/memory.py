@@ -39,15 +39,13 @@ class MemoryStorage:
             bank = self._banks.get(request.bank_id, {})
             results = []
             query_words = set(request.query.lower().split())
-            for item in bank.values():
-                text_words = set(item.text.lower().split())
-                if not query_words:
-                    score = 0.0
-                else:
+            if query_words:
+                for item in bank.values():
+                    text_words = set(item.text.lower().split())
                     overlap = len(query_words & text_words)
                     score = overlap / len(query_words)
-                if score > 0:
-                    results.append(RecallResult(item=item, score=score))
+                    if score > 0:
+                        results.append(RecallResult(item=item, score=score))
 
             results.sort(key=lambda r: r.score, reverse=True)
             return RecallResponse(
