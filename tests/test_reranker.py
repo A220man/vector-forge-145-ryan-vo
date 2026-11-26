@@ -124,3 +124,22 @@ def test_get_top_k_larger_than_available():
     scores = {2: 0.95, 0: 0.85}
     top = _CohereCompatibleRerankClient.get_top_k(scores, k=10)
     assert top == [2, 0]
+
+
+def test_scores_indices_array_shape_mismatched_lengths():
+    """Shape 3: {scores: [...], indices: [...]} with mismatched lengths truncates to shorter list."""
+    # scores has 3 elements, indices has 2 - should only use first 2
+    result = {
+        "scores": [0.95, 0.85, 0.72],
+        "indices": [2, 0],
+    }
+    scores = _CohereCompatibleRerankClient.predict(result)
+    assert scores == {2: 0.95, 0: 0.85}
+
+    # scores has 2 elements, indices has 3 - should only use first 2
+    result2 = {
+        "scores": [0.95, 0.85],
+        "indices": [2, 0, 1],
+    }
+    scores2 = _CohereCompatibleRerankClient.predict(result2)
+    assert scores2 == {2: 0.95, 0: 0.85}
